@@ -11,7 +11,7 @@ import {
   RapierRigidBody,
 } from "@react-three/rapier";
 
-const textureLoader = new THREE.TextureLoader();
+
 const imageUrls = [
   // Core
   "/images/tech/python.svg",
