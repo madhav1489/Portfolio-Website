@@ -1,16 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MdArrowOutward } from "react-icons/md";
 
 interface Props {
-  image: string;
+  image?: string;
+  images?: string[];
   alt?: string;
   video?: string;
+  directVideo?: string;
   link?: string;
 }
 
 const WorkImage = (props: Props) => {
   const [isVideo, setIsVideo] = useState(false);
   const [video, setVideo] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (isHovered && props.images && props.images.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % props.images!.length);
+      }, 2000);
+      return () => clearInterval(interval);
+    } else {
+      setCurrentIndex(0);
+    }
+  }, [props.images, isHovered]);
+
   const handleMouseEnter = async () => {
     if (props.video) {
       setIsVideo(true);
@@ -26,8 +42,14 @@ const WorkImage = (props: Props) => {
       <a
         className="work-image-in"
         href={props.link}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={() => setIsVideo(false)}
+        onMouseEnter={() => {
+          setIsHovered(true);
+          handleMouseEnter();
+        }}
+        onMouseLeave={() => {
+          setIsHovered(false);
+          setIsVideo(false);
+        }}
         target="_blank"
         data-cursor={"disable"}
       >
@@ -36,8 +58,37 @@ const WorkImage = (props: Props) => {
             <MdArrowOutward />
           </div>
         )}
-        <img src={props.image} alt={props.alt} />
-        {isVideo && <video src={video} autoPlay muted playsInline loop></video>}
+        {props.directVideo ? (
+          <video
+            className="direct-video"
+            src={props.directVideo}
+            autoPlay
+            muted
+            playsInline
+            loop
+          />
+        ) : props.images ? (
+          props.images.map((img, idx) => (
+            <img
+              key={idx}
+              src={img}
+              alt={props.alt}
+              style={{
+                position: idx === 0 ? "relative" : "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                opacity: currentIndex === idx ? 1 : 0,
+                transition: "opacity 1s ease-in-out",
+                objectFit: "cover",
+              }}
+            />
+          ))
+        ) : (
+          <img src={props.image} alt={props.alt} />
+        )}
+        {isVideo && <video className="overlay-video" src={video} autoPlay muted playsInline loop></video>}
       </a>
     </div>
   );

@@ -53,21 +53,60 @@ const Work = () => {
           My <span>Work</span>
         </h2>
         <div className="work-flex">
-          {[...Array(6)].map((_value, index) => (
+          {[
+            {
+              title: "Slide Forge — AI Presentation Generator",
+              category: "RAG Powered",
+              tools: "ChromaDB, Hugging Face LLM, Python",
+              directVideo: "/images/slideforge_demo.mp4",
+              github: "https://github.com/madhav1489/SlideForge"
+            },
+            {
+              title: "Vision-Based ASL Recognition",
+              category: "Computer Vision",
+              tools: "OpenCV, Machine Learning, Python",
+              images: [
+                "/images/ASL1.png",
+                "/images/ASL2.png",
+                "/images/ASL3.png",
+                "/images/ASL4.png"
+              ],
+              github: "https://github.com/madhav1489/Vision-Based-ASL-Recognition"
+            },
+            {
+              title: "Movie Recommendation System",
+              category: "Machine Learning",
+              tools: "Vectorization, Content-Based Filtering",
+              images: [
+                "/images/movie1.png",
+                "/images/movie2.png",
+                "/images/movie3.png"
+              ],
+              github: "https://github.com/madhav1489/movie-recommendation"
+            },
+          ].map((project, index) => (
             <div className="work-box" key={index}>
               <div className="work-info">
                 <div className="work-title">
                   <h3>0{index + 1}</h3>
 
                   <div>
-                    <h4>Project Name</h4>
-                    <p>Category</p>
+                    <h4>
+                      {project.github ? (
+                        <a href={project.github} target="_blank" rel="noreferrer" className="project-title-link" data-cursor="resume">
+                          {project.title}
+                        </a>
+                      ) : (
+                        project.title
+                      )}
+                    </h4>
+                    <p>{project.category}</p>
                   </div>
                 </div>
                 <h4>Tools and features</h4>
-                <p>Javascript, TypeScript, React, Threejs</p>
+                <p>{project.tools}</p>
               </div>
-              <WorkImage image="/images/placeholder.webp" alt="" />
+              <WorkImage image={(project as any).image} images={(project as any).images} directVideo={(project as any).directVideo} alt={project.title} />
             </div>
           ))}
         </div>

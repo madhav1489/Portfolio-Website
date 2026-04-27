@@ -13,16 +13,120 @@ import {
 
 const textureLoader = new THREE.TextureLoader();
 const imageUrls = [
-  "/images/react2.webp",
-  "/images/next2.webp",
-  "/images/node2.webp",
-  "/images/express.webp",
-  "/images/mongo.webp",
-  "/images/mysql.webp",
-  "/images/typescript.webp",
-  "/images/javascript.webp",
+  // Core
+  "/images/tech/python.svg",
+  "/images/tech/numpy.svg",
+  "/images/tech/pandas.svg",
+  "/images/tech/scikitlearn.svg",
+  "/images/tech/xgboost.png",
+  // Deep Learning
+  "/images/tech/tensorflow.svg",
+  "/images/tech/keras.svg",
+  "/images/tech/opencv.svg",
+  "/images/tech/mediapipe.png",
+  "/images/tech/nltk.png",
+  // Gen AI
+  "/images/tech/huggingface.svg",
+  "/images/tech/langchain.png",
+  "/images/tech/chromadb.png",
+  // Cloud/Tools
+  "/images/tech/azure.svg",
+  "/images/tech/postgresql.svg",
+  "/images/tech/powerbi.svg",
+  "/images/tech/streamlit.svg",
+  // Text only
+  "text:RAG",
+  "text:LLM"
 ];
-const textures = imageUrls.map((url) => textureLoader.load(url));
+
+const createPaddedWhiteTexture = (url: string) => {
+  const canvas = document.createElement("canvas");
+  canvas.width = 512;
+  canvas.height = 512;
+  const ctx = canvas.getContext("2d");
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+
+  if (url.startsWith("text:")) {
+    const textName = url.split(":")[1];
+    if (ctx) {
+      // Dark background
+      ctx.fillStyle = "#110b1a";
+      ctx.fillRect(0, 0, 512, 512);
+
+      // Glowing text
+      ctx.font = "bold 130px Arial";
+      ctx.fillStyle = "#d8b4fe";
+      ctx.shadowColor = "#a855f7";
+      ctx.shadowBlur = 40;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(textName, 256, 256);
+      
+      texture.needsUpdate = true;
+    }
+    return texture;
+  }
+
+  if (ctx) {
+    // Fill white background for images
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, 512, 512);
+  }
+
+  const img = new Image();
+  img.src = url;
+  img.onload = () => {
+    if (ctx) {
+      // Clear and redraw white background just in case
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, 512, 512);
+      
+      // Draw image centered but shifted up slightly
+      const size = 220;
+      const xOffset = (512 - size) / 2;
+      const yOffset = (512 - size) / 2 - 30;
+      ctx.drawImage(img, xOffset, yOffset, size, size);
+
+      // Format the name
+      const filename = url.split('/').pop()?.split('.')[0] || "";
+      let displayName = filename.charAt(0).toUpperCase() + filename.slice(1);
+      
+      // Custom formatting for specific tech names
+      const nameOverrides: Record<string, string> = {
+        'scikitlearn': 'Scikit-Learn',
+        'powerbi': 'Power BI',
+        'opencv': 'OpenCV',
+        'postgresql': 'PostgreSQL',
+        'xgboost': 'XGBoost',
+        'tensorflow': 'TensorFlow',
+        'streamlit': 'Streamlit',
+        'huggingface': 'HuggingFace',
+        'langchain': 'LangChain',
+        'chromadb': 'ChromaDB',
+        'mediapipe': 'MediaPipe',
+        'nltk': 'NLTK',
+        'numpy': 'NumPy',
+        'pandas': 'Pandas',
+        'azure': 'Azure',
+        'python': 'Python',
+        'keras': 'Keras'
+      };
+      if (nameOverrides[filename]) displayName = nameOverrides[filename];
+
+      // Draw text
+      ctx.font = "bold 44px Arial";
+      ctx.fillStyle = "#222222";
+      ctx.textAlign = "center";
+      ctx.fillText(displayName, 256, yOffset + size + 60);
+
+      texture.needsUpdate = true;
+    }
+  };
+  return texture;
+};
+
+const textures = imageUrls.map((url) => createPaddedWhiteTexture(url));
 
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
@@ -129,11 +233,11 @@ const TechStack = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const threshold = document
-        .getElementById("work")!
-        .getBoundingClientRect().top;
-      setIsActive(scrollY > threshold);
+      const techSection = document.querySelector(".techstack");
+      if (techSection) {
+        const rect = techSection.getBoundingClientRect();
+        setIsActive(rect.top < window.innerHeight && rect.bottom > 0);
+      }
     };
     document.querySelectorAll(".header a").forEach((elem) => {
       const element = elem as HTMLAnchorElement;

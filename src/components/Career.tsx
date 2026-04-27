@@ -5,8 +5,8 @@ const Career = () => {
     <div className="career-section section-container">
       <div className="career-container">
         <h2>
-          My career <span>&</span>
-          <br /> experience
+          My Experience <br />
+          <span>& Education</span>
         </h2>
         <div className="career-info">
           <div className="career-timeline">
@@ -15,43 +15,51 @@ const Career = () => {
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>Position In Company</h4>
-                <h5>Company Name</h5>
+                <h3>NOV 2025 – DEC 2025</h3>
+                <h4>Data Science Internship</h4>
+                <h5>OasisInfobyte</h5>
               </div>
-              <h3>20XX</h3>
             </div>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-              labore sit non ipsum temporibus quidem, deserunt eaque officiis
-              mollitia ratione suscipit repellat.
+              Built end-to-end machine learning projects including car price prediction, email spam detection, and sales
+              forecasting, performing data preprocessing, feature engineering, model training, and evaluation using Python and
+              Scikit-learn. (Duration: 1 month)
             </p>
           </div>
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>Position In Company</h4>
-                <h5>Company Name</h5>
+                <h3>2022 – 2026</h3>
+                <h4>B.Tech in Computer Science</h4>
+                <h5>College of Engineering Roorkee</h5>
               </div>
-              <h3>20XX</h3>
             </div>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-              labore sit non ipsum temporibus quidem, deserunt eaque officiis
-              mollitia ratione suscipit repellat.
+              Expected Graduation 2026 • Percentage: 74%
             </p>
           </div>
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>Position In Company</h4>
-                <h5>Company Name</h5>
+                <h3>COMPLETED 2022</h3>
+                <h4>Intermediate PCM</h4>
+                <h5>Heritage Public School</h5>
               </div>
-              <h3>NOW</h3>
             </div>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
-              labore sit non ipsum temporibus quidem, deserunt eaque officiis
-              mollitia ratione suscipit repellat.
+              Percentage: 79%
+            </p>
+          </div>
+          <div className="career-info-box">
+            <div className="career-info-in">
+              <div className="career-role">
+                <h3>COMPLETED 2020</h3>
+                <h4>High School</h4>
+                <h5>Heritage Public School</h5>
+              </div>
+            </div>
+            <p>
+              Percentage: 84%
             </p>
           </div>
         </div>

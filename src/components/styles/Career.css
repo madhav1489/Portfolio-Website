@@ -13,9 +13,9 @@
 }
 
 .career-section h2 {
-  font-size: 70px;
-  line-height: 70px;
-  font-weight: 400;
+  font-size: 80px;
+  line-height: 85px;
+  font-weight: 600;
   text-align: center;
   background: linear-gradient(0deg, #7f40ff, #ffffff);
   background-clip: text;
@@ -24,10 +24,16 @@
   color: transparent;
   margin-top: 50px;
   margin-bottom: 90px;
+  font-family: "Cormorant Garamond", serif;
 }
 .career-section h2 > span {
-  font-family: "Geist", sans-serif;
-  font-weight: 300;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-style: italic;
+  background: linear-gradient(0deg, #a288e0, #c4b5fd);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .career-info {
   position: relative;
@@ -53,10 +59,10 @@
   gap: 50px;
 }
 .career-info h3 {
-  font-size: 48px;
+  font-size: 18px;
   margin: 0;
-  font-weight: 500;
-  line-height: 45px;
+  font-weight: 300;
+  line-height: 30px;
 }
 
 .career-info h4 {
@@ -144,7 +150,7 @@
     font-size: 17px;
   }
   .career-info h3 {
-    font-size: 40px;
+    font-size: 14px;
   }
   .career-info-box p {
     font-size: 14px;
@@ -199,7 +205,7 @@
     gap: 0px;
   }
   .career-info h3 {
-    font-size: 33px;
+    font-size: 14px;
   }
   .career-info-in,
   .career-info-box p {

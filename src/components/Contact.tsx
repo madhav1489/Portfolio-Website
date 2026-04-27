@@ -1,4 +1,5 @@
-import { MdArrowOutward, MdCopyright } from "react-icons/md";
+import { MdArrowOutward } from "react-icons/md";
+import { SiGmail } from "react-icons/si";
 import "./styles/Contact.css";
 
 const Contact = () => {
@@ -10,14 +11,14 @@ const Contact = () => {
           <div className="contact-box">
             <h4>Email</h4>
             <p>
-              <a href="mailto:example@mail.com" data-cursor="disable">
-                example@mail.com
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=madhavsharma1489@gmail.com" target="_blank" rel="noreferrer" data-cursor="disable" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <SiGmail color="#EA4335" /> madhavsharma1489@gmail.com
               </a>
             </p>
             <h4>Phone</h4>
             <p>
-              <a href="tel:+9199999999" data-cursor="disable">
-                +91 99999 99999
+              <a href="tel:+917006563950" data-cursor="disable">
+                +91 70065 63950
               </a>
             </p>
           </div>
@@ -39,29 +40,13 @@ const Contact = () => {
             >
               Linkedin <MdArrowOutward />
             </a>
-            <a
-              href="https://x.com"
-              target="_blank"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Twitter <MdArrowOutward />
-            </a>
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              data-cursor="disable"
-              className="contact-social"
-            >
-              Instagram <MdArrowOutward />
-            </a>
           </div>
           <div className="contact-box">
             <h2>
-              Designed and Developed <br /> by <span>Moncy Yohannan</span>
+              Designed and Developed <br /> by <span>Madhav Sharma</span>
             </h2>
             <h5>
-              <MdCopyright /> 2024
+              2026
             </h5>
           </div>
         </div>

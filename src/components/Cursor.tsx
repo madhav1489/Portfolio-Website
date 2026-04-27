@@ -18,7 +18,7 @@ const Cursor = () => {
         const delay = 6;
         cursorPos.x += (mousePos.x - cursorPos.x) / delay;
         cursorPos.y += (mousePos.y - cursorPos.y) / delay;
-        gsap.to(cursor, { x: cursorPos.x, y: cursorPos.y, duration: 0.1 });
+        gsap.set(cursor, { x: cursorPos.x, y: cursorPos.y });
         // cursor.style.transform = `translate(${cursorPos.x}px, ${cursorPos.y}px)`;
       }
       requestAnimationFrame(loop);
@@ -33,7 +33,13 @@ const Cursor = () => {
           cursor.classList.add("cursor-icons");
 
           gsap.to(cursor, { x: rect.left, y: rect.top, duration: 0.1 });
-          //   cursor.style.transform = `translate(${rect.left}px,${rect.top}px)`;
+          cursor.style.setProperty("--cursorH", `${rect.height}px`);
+          hover = true;
+        }
+        if (element.dataset.cursor === "resume") {
+          cursor.classList.add("cursor-resume");
+          gsap.to(cursor, { x: rect.left, y: rect.top, duration: 0.1 });
+          cursor.style.setProperty("--cursorW", `${rect.width}px`);
           cursor.style.setProperty("--cursorH", `${rect.height}px`);
           hover = true;
         }
@@ -42,7 +48,7 @@ const Cursor = () => {
         }
       });
       element.addEventListener("mouseout", () => {
-        cursor.classList.remove("cursor-disable", "cursor-icons");
+        cursor.classList.remove("cursor-disable", "cursor-icons", "cursor-resume");
         hover = false;
       });
     });

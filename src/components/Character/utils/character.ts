@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { DRACOLoader, GLTF, GLTFLoader } from "three-stdlib";
 import { setCharTimeline, setAllTimeline } from "../../utils/GsapScroll";
 import { decryptFile } from "./decrypt";
+import { customizeAvatar, addGlasses, addHeadset } from "./customizeAvatar";
 
 const setCharacter = (
   renderer: THREE.WebGLRenderer,
@@ -34,8 +35,29 @@ const setCharacter = (
                 child.castShadow = true;
                 child.receiveShadow = true;
                 mesh.frustumCulled = true;
+                // Debug: log mesh and material names
+                const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+                mats.forEach((m: any) => {
+                  console.log(`Mesh: "${child.name}" | Material: "${m.name}" | Color: #${m.color?.getHexString()}`);
+                });
               }
             });
+
+            // Customize avatar appearance
+            customizeAvatar(character);
+
+            // DEBUG: Log world positions of every mesh (TEMPORARY)
+            character.traverse((node: any) => {
+              if (node.isMesh) {
+                const pos = new THREE.Vector3();
+                node.getWorldPosition(pos);
+                console.log(`MESH: "${node.name}" | pos: x=${pos.x.toFixed(3)} y=${pos.y.toFixed(3)} z=${pos.z.toFixed(3)}`);
+              }
+            });
+
+            addGlasses(character);
+            addHeadset(character);
+
             resolve(gltf);
             setCharTimeline(character, camera);
             setAllTimeline();

@@ -1,8 +1,7 @@
 import {
   FaGithub,
-  FaInstagram,
   FaLinkedinIn,
-  FaXTwitter,
+  FaEnvelope,
 } from "react-icons/fa6";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
@@ -70,18 +69,13 @@ const SocialIcons = () => {
           </a>
         </span>
         <span>
-          <a href="https://x.com" target="_blank">
-            <FaXTwitter />
-          </a>
-        </span>
-        <span>
-          <a href="https://www.instagram.com" target="_blank">
-            <FaInstagram />
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=madhavsharma1489@gmail.com" target="_blank" rel="noreferrer">
+            <FaEnvelope />
           </a>
         </span>
       </div>
-      <a className="resume-button" href="#">
-        <HoverLinks text="RESUME" />
+      <a className="resume-button" href="/Madhav_Sharma_Resume.pdf" target="_blank" rel="noreferrer" data-cursor="resume">
+        <HoverLinks text="RESUME" cursor={true} />
         <span>
           <TbNotes />
         </span>
