@@ -231,3 +231,49 @@ body {
 .nav-link:hover::after {
   width: 100%;
 }
+
+/* ── PERFORMANCE IMPROVEMENTS ── */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Only animate what needs to move */
+.work-section,
+.whatIDO,
+.work-flex {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Low-end device: kill heavy animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Disable 3D/heavy effects on small screens */
+@media only screen and (max-width: 900px) {
+  /* Hide left sidebar social icons on mobile — shown in footer/contact instead */
+  .icons-section {
+    display: none;
+  }
+
+  /* Prevent layout overflow */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Resume button readable on mobile */
+  .resume-button {
+    writing-mode: horizontal-tb !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    top: auto !important;
+  }
+}

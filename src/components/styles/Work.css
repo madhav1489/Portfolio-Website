@@ -72,7 +72,6 @@
   margin: 0;
   font-weight: 600;
 }
-
 .work-info h4 {
   font-size: 18px;
   font-weight: 400;
@@ -173,7 +172,7 @@
     font-size: 50px;
   }
 }
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1200px) {
   .work-box {
     width: 350px;
     padding: 30px;
@@ -183,7 +182,6 @@
     padding-right: 45px;
   }
 }
-
 @media only screen and (max-height: 650px) {
   .work-image img {
     max-height: 200px;
@@ -196,24 +194,99 @@
     gap: 20px;
   }
 }
-/* @media only screen and (max-width: 900px) {
-  .work-image img {
-    max-height: 200px;
-  }
-  .work-section h2 {
-    font-size: 40px;
-    margin-bottom: 20px;
-  }
-  .work-box {
-    gap: 20px;
-  }
-} */
 @media only screen and (max-width: 1025px) {
   .work-container {
     align-content: normal;
   }
   .work-flex {
     height: auto;
+  }
+}
+
+/* ── MOBILE ── */
+@media only screen and (max-width: 900px) {
+  .work-section {
+    height: auto;
+    will-change: auto;
+  }
+  .work-container {
+    height: auto;
+    padding-bottom: 60px;
+  }
+  .work-section h2 {
+    font-size: 42px;
+    margin-top: 60px;
+    margin-bottom: 10px;
+  }
+
+  /* horizontal swipe carousel */
+  .work-flex {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    gap: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    height: auto;
+  }
+  .work-flex::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  /* scroll indicator dots */
+  .work-flex::before,
+  .work-flex::after {
+    display: none;
+  }
+
+  .work-box {
+    width: 85vw;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    padding: 24px 20px;
+    border-right: 1px solid #363636;
+    gap: 24px;
+    flex-direction: column !important; /* override even/odd flip */
+  }
+
+  .work-title h3 {
+    font-size: 36px;
+    line-height: 1;
+  }
+  .work-title h4 {
+    font-size: 14px;
+  }
+  .work-info p {
+    font-size: 12px;
+  }
+  .work-image img,
+  .work-image video.direct-video {
+    max-height: 200px;
+    border-radius: 6px;
+  }
+
+  /* swipe hint label */
+  .work-container::after {
+    content: "← swipe to explore →";
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.3);
+    margin-top: 16px;
+    font-family: "Inter", sans-serif;
+  }
+}
+
+/* ── PERFORMANCE: reduce motion for low-end devices ── */
+@media (prefers-reduced-motion: reduce) {
+  .work-flex {
+    scroll-behavior: auto;
   }
 }
 
